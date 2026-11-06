@@ -1,7 +1,7 @@
 import time
-from company.branches import BRANCHES, get_branch
+from branches import BRANCHES, get_branch
 
-TIME_FORMAT = "%A, %d %B %Y  %I:%M:%S %p".
+TIME_FORMAT = "%A, %d %B %Y  %I:%M:%S %p"
 
 #get the offset and return local time
 def get_local_time(offset):
@@ -33,7 +33,7 @@ def hour_difference(from_code, to_code):
 
 #convert formatted time into hour, minute
 def convert_time(hour, minute, from_code, to_code):
-    difference = hour_diffrence(from_code, to_code)
+    difference = hour_difference(from_code, to_code)
 
     if difference is None:
         return None
