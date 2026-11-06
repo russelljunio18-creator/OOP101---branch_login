@@ -11,7 +11,7 @@ EMPLOYEES = {
 } 
 
 def get_branch(code):
-
+    return BRANCHES.get(code)
 
 def get_branch_codes():
-
+    return list(BRANCHES.keys())
