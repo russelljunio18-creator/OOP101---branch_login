@@ -39,7 +39,9 @@ def convert_time(hour, minute, from_code, to_code):
     if difference is None:
         return None
 
-    total = hour * 60 + minute + difference * 60
+    difference_minutes = int(round(difference * 60))
+    total = hour * 60 + minute + difference_minutes
+
     day_change = total // 1440
     total = total % 1440
 
@@ -57,3 +59,14 @@ def describe_day_change(day_change):
     else:
         day_change_text = "(same day)"
     return day_change_text
+
+def format_utc_offset(offset):
+    """Return a UTC offset label such as UTC+8 or UTC+5:30."""
+    total_minutes = int(round(offset * 60))
+    sign = "+" if total_minutes >= 0 else "-"
+    hours, minutes = divmod(abs(total_minutes), 60)
+
+    if minutes == 0:
+        return f"UTC{sign}{hours}"
+
+    return f"UTC{sign}{hours}:{minutes:02d}"

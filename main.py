@@ -4,15 +4,16 @@ from company.branches import EMPLOYEES, get_branch, get_branch_codes
 
 def show_all_branch_times():
     """Display the current time at every branch."""
-    print("\n --- Current time at all branches ---")
+    print("\n--- Current time at all branches ---")
 
     for code in get_branch_codes():
         branch = get_branch(code)
         current_time = timeconvert.get_branch_time(code)
+        offset_text = timeconvert.format_utc_offset(branch["offset"])
 
         print(
             f'{branch["city"]:7s} '
-            f'({branch["tz"]}, UTC{branch["offset"]:+d}): {current_time}'
+            f'({branch["tz"]}, {offset_text}): {current_time}'
         )
 
 def read_time():
@@ -64,7 +65,7 @@ def convert_meeting_time(my_code):
 
         print(
             f'  {new_hour:02d}:{new_minute:02d} in {branch["city"]} '
-            f'{day_text}  [{difference:+d} h]'
+            f'{day_text}  [{difference:+g} h]'
         )
 
 def employee_menu(username):
