@@ -1,10 +1,11 @@
 import time
-from branches import EMPLOYEES
+from company.branches import EMPLOYEES
 
 MAX_ATTEMPTS = 3
 LOCKOUT_SECONDS = 5
 
 def check_credentials(username, password):
+    """Check if the provided username and password are valid."""
     username.lower()
     employee = EMPLOYEES.get(username)
 
@@ -14,6 +15,7 @@ def check_credentials(username, password):
     return employee["password"] == password
 
 def login():
+    """Prompt the user for username and password, and return the username if valid."""
     attempts = 0
 
     while attempts != MAX_ATTEMPTS:
@@ -24,7 +26,7 @@ def login():
         if credentials == False:
             attempts += 1
             print(f"Invalid username or password. Attempts left: {MAX_ATTEMPTS - attempts}")
-            
+
         if credentials == True:
             return username
 
